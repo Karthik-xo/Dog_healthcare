@@ -7,6 +7,7 @@ import {
     Video, RefreshCw, Check, Activity
 } from 'lucide-react';
 
+import API_URL, { BASE_URL } from 'https://dog-healthcare-backend.onrender.com';
 const Profile = () => {
     const [user, setUser] = useState({
         username: '',
