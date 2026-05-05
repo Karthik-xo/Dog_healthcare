@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, LogIn, HeartPulse, User, HelpCircle } from 'lucide-react';
 
+import API_URL from 'https://dog-healthcare-backend.onrender.com';
+
 const Login = () => {
     const [formData, setFormData] = useState({ username: '', password: '', newPassword: '', confirmPassword: '' });
     const [showPassword, setShowPassword] = useState(false);
