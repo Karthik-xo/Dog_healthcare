@@ -2,6 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 
+import API_URL from 'https://dog-healthcare-backend.onrender.com';
+
 const Contact = () => {
     const [formData, setFormData] = useState({
         name: '',
