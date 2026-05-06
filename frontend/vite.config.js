@@ -4,16 +4,10 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-      },
-      '/uploads': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-      },
-    },
-  },
+  // Add base path to ensure assets load correctly on static hosts like Render
+  base: './',
+  build: {
+    outDir: 'dist',
+    sourcemap: false
+  }
 })
