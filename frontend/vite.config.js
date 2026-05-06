@@ -1,13 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// Standard Vite configuration for Render deployments
 export default defineConfig({
   plugins: [react()],
-  // Add base path to ensure assets load correctly on static hosts like Render
-  base: './',
+  // Use absolute root path for production
+  base: '/',
   build: {
     outDir: 'dist',
+    emptyOutDir: true,
     sourcemap: false
   }
 })
