@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Activity, CalendarDays, ArrowUpRight, Bell, X, ShieldCheck, Mail, Info, RefreshCw } from 'lucide-react';
 
-import API_URL from '@/config.js';
+import API_URL from '@/config';
 const DashboardHome = () => {
     const [isAlertsModalOpen, setIsAlertsModalOpen] = useState(false);
 
