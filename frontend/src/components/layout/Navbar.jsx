@@ -2,7 +2,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, HeartPulse, UserCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import API_URL, { BASE_URL } from '../../config.js';
+import API_URL, { BASE_URL } from '@/config.js';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
