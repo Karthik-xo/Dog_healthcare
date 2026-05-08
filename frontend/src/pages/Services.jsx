@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import {
     Stethoscope, Activity, HeartPulse, Cpu, ShieldCheck,
     ArrowRight, Star, Zap, Waves, Monitor, Lock, CheckCircle2,
-    Users, Plus, BrainCircuit, Microscope
+    Users, Plus, BrainCircuit, Microscope, ChevronDown
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -118,19 +118,20 @@ const Services = () => {
                             <p className="text-xl text-slate-500 max-w-xl leading-relaxed mb-12">
                                 We combine cutting-edge technology with elite veterinary expertise to provide the highest level of care for your companions.
                             </p>
-                            <div className="flex flex-wrap gap-6">
+                            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
                                 <button
                                     onClick={() => navigate('/dashboard/appointments')}
-                                    className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
+                                    className="w-full sm:w-auto px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
                                 >
                                     Book Consultation
                                 </button>
                                 <button
                                     onClick={() => setShowProtocolModal(true)}
-                                    className="px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-2xl font-bold text-lg hover:border-cyan-500 hover:text-cyan-600 transition-all"
+                                    className="w-full sm:w-auto px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-2xl font-bold text-lg hover:border-cyan-500 hover:text-cyan-600 transition-all"
                                 >
                                     Explore Protocol
                                 </button>
+
                             </div>
                         </motion.div>
 
@@ -143,23 +144,34 @@ const Services = () => {
                             <div className="absolute -inset-10 bg-cyan-500/10 rounded-full blur-[100px]"></div>
                             <div className="relative rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.15)] border-8 border-white">
                                 <img src="/image/puppy_hero_4k.png" alt="Happy puppy in the Pediatric Unit of Jimmie HealthCare" loading="lazy" className="w-full aspect-[4/5] object-cover" />
-                                <div className="absolute bottom-10 left-10 right-10 bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-white shadow-2xl flex items-center justify-between">
+                                <div className="absolute bottom-4 left-4 right-4 md:bottom-10 md:left-10 md:right-10 bg-white/90 backdrop-blur-xl p-4 md:p-8 rounded-3xl border border-white shadow-2xl flex items-center justify-between">
                                     <div>
-                                        <div className="text-slate-900 font-black text-2xl tracking-tight mb-1 italic">Pediatric Unit A1</div>
-                                        <div className="text-cyan-600 font-bold text-sm uppercase tracking-widest">Active Scan Processed</div>
+                                        <div className="text-slate-900 font-black text-lg md:text-2xl tracking-tight mb-1 italic">Pediatric Unit A1</div>
+                                        <div className="text-cyan-600 font-bold text-[10px] md:text-sm uppercase tracking-widest">Active Scan Processed</div>
                                     </div>
-                                    <div className="w-16 h-16 rounded-full bg-cyan-500 flex items-center justify-center text-white shadow-lg shadow-cyan-200">
-                                        <Monitor size={28} />
+                                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-cyan-500 flex items-center justify-center text-white shadow-lg shadow-cyan-200">
+                                        <Monitor size={window.innerWidth < 768 ? 20 : 28} />
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
                     </div>
                 </div>
+
+                {/* Animated Scroll Indicator */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.5, duration: 1, repeat: Infinity, repeatType: 'reverse' }}
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400"
+                >
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em]">Scroll</span>
+                    <ChevronDown size={24} className="text-cyan-500" />
+                </motion.div>
             </header>
 
             {/* CLINICAL DISCIPLINES - STRUCTURED GRID */}
-            <section className="py-40 bg-white">
+            <section className="py-20 md:py-40 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                         <div className="max-w-2xl">
@@ -169,12 +181,12 @@ const Services = () => {
                                 Our facility is organized into specialized units to ensure every aspect of canine health is managed by domain experts.
                             </p>
                         </div>
-                        <div className="flex bg-slate-50 p-2 rounded-2xl border border-slate-100">
+                        <div className="flex flex-wrap justify-center bg-slate-50 p-2 rounded-2xl border border-slate-100 gap-2">
                             {['clinical', 'surgery', 'diagnostics'].map(tab => (
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
-                                    className={`px-8 py-3 rounded-xl font-bold text-sm transition-all uppercase tracking-widest ${activeTab === tab ? 'bg-white text-cyan-600 shadow-lg' : 'text-slate-400 hover:text-slate-600'}`}
+                                    className={`px-6 md:px-8 py-3 rounded-xl font-bold text-[10px] md:text-sm transition-all uppercase tracking-widest ${activeTab === tab ? 'bg-white text-cyan-600 shadow-lg' : 'text-slate-400 hover:text-slate-600'}`}
                                 >
                                     {tab}
                                 </button>
@@ -231,7 +243,7 @@ const Services = () => {
             </section>
 
             {/* DASHBOARD WIDGET - LIVE PIPELINE */}
-            <section className="py-20 bg-slate-50">
+            <section className="py-12 md:py-20 bg-slate-50">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="bg-slate-900 rounded-[4rem] p-12 md:p-20 relative overflow-hidden shadow-3xl shadow-slate-200">
                         <div className="absolute top-0 right-0 p-20 opacity-10">
@@ -289,68 +301,78 @@ const Services = () => {
             </section>
 
             {/* PEDIATRIC UNIT - THE PUPPY FOCUS */}
-            <section className="py-40 bg-white relative overflow-hidden">
+            <section className="py-20 md:py-40 bg-white relative overflow-clip">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-50 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2"></div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-                        <div className="relative">
+                    <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start relative">
+                        
+                        {/* STICKY IMAGE CONTAINER */}
+                        <div className="w-full lg:w-1/2 relative lg:sticky lg:top-32 sticky top-24 z-10">
                             <motion.div
                                 initial={{ opacity: 0, rotate: -5 }}
                                 whileInView={{ opacity: 1, rotate: 0 }}
                                 transition={{ duration: 1 }}
-                                className="relative z-20 rounded-[5rem] overflow-hidden shadow-3xl border-8 border-white"
+                                className="relative z-20 rounded-[3rem] md:rounded-[5rem] overflow-hidden shadow-3xl border-8 border-white"
                             >
                                 <img src="/image/dog4.jpg" alt="Young dog receiving pediatric veterinary care" loading="lazy" className="w-full aspect-square object-cover" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-                                <div className="absolute bottom-12 left-12 right-12">
-                                    <div className="text-white font-black text-4xl italic tracking-tighter mb-4">Pediatric Center.</div>
+                                <div className="absolute bottom-6 left-6 right-6 md:bottom-12 md:left-12 md:right-12">
+                                    <div className="text-white font-black text-3xl md:text-4xl italic tracking-tighter mb-4">Pediatric Center.</div>
                                     <div className="flex gap-4">
-                                        <div className="flex-1 h-3 bg-white/20 rounded-full overflow-hidden">
+                                        <div className="flex-1 h-2 md:h-3 bg-white/20 rounded-full overflow-hidden">
                                             <div className="h-full w-3/4 bg-cyan-400"></div>
                                         </div>
-                                        <span className="text-white font-black text-xs italic tracking-widest">ACTIVE CARE</span>
+                                        <span className="text-white font-black text-[10px] md:text-xs italic tracking-widest">ACTIVE CARE</span>
                                     </div>
                                 </div>
                             </motion.div>
+                            
+                            {/* Scanning Animation */}
                             <motion.div
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                className="absolute -top-12 -right-12 w-48 h-48 border-4 border-dashed border-cyan-200 rounded-full z-10 flex items-center justify-center p-8"
+                                className="absolute -top-6 -right-6 md:-top-12 md:-right-12 w-32 h-32 md:w-48 md:h-48 border-4 border-dashed border-cyan-200 rounded-full z-10 flex items-center justify-center p-6 md:p-8 bg-white/50 backdrop-blur-sm shadow-xl"
                             >
-                                <Monitor size={60} className="text-cyan-100" />
+                                <Monitor size={window.innerWidth < 768 ? 40 : 60} className="text-cyan-500 md:text-cyan-100 drop-shadow-md" />
                             </motion.div>
                         </div>
 
-                        <div>
+                        {/* SCROLLING TEXT CONTENT */}
+                        <div className="w-full lg:w-1/2 z-20 relative bg-white/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none p-6 md:p-0 rounded-3xl md:rounded-none shadow-2xl md:shadow-none mt-4 md:mt-0 border border-white md:border-none">
                             <span className="text-cyan-600 font-black text-xs uppercase tracking-[0.4em] mb-4 block">Next Generation Medicine</span>
-                            <h2 className="text-6xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-none mb-10 italic">Puppy Healthcare Expertise.</h2>
-                            <p className="text-xl text-slate-500 leading-relaxed mb-12">
+                            <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-none mb-10 italic">Puppy Healthcare Expertise.</h2>
+                            <p className="text-lg md:text-xl text-slate-500 leading-relaxed mb-12">
                                 Special care protocols for the critical early stages of development. We monitor growth metrics with clinical precision to ensure a long, healthy life.
                             </p>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
+                            
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-16">
                                 {[
-                                    { label: 'Growth Syncing', icon: BrainCircuit, color: 'bg-blue-50' },
-                                    { label: 'Bio-Monitoring', icon: Microscope, color: 'bg-emerald-50' },
-                                    { label: 'Immune System', icon: ShieldCheck, color: 'bg-cyan-50' },
-                                    { label: 'Nutrition Tech', icon: Zap, color: 'bg-orange-50' }
+                                    { label: 'Growth Syncing', icon: BrainCircuit, color: 'bg-blue-50', desc: 'Real-time bone density and muscle mass tracking.' },
+                                    { label: 'Bio-Monitoring', icon: Microscope, color: 'bg-emerald-50', desc: 'Cellular level analysis of metabolic rates.' },
+                                    { label: 'Immune System', icon: ShieldCheck, color: 'bg-cyan-50', desc: 'Antibody titer mapping and proactive boosting.' },
+                                    { label: 'Nutrition Tech', icon: Zap, color: 'bg-orange-50', desc: 'Dynamic caloric adjustment algorithms.' },
+                                    { label: 'Neural Mapping', icon: Activity, color: 'bg-purple-50', desc: 'Cognitive development milestone tracking.' },
+                                    { label: 'Genetic Baseline', icon: CheckCircle2, color: 'bg-rose-50', desc: 'Predictive health modeling via DNA sequencing.' }
                                 ].map((item, i) => (
                                     <motion.div
                                         key={i}
                                         whileHover={{ scale: 1.05 }}
-                                        className="flex items-center gap-6 p-6 rounded-3xl bg-slate-50 border border-slate-100"
+                                        className="flex flex-col gap-4 p-6 rounded-3xl bg-slate-50/80 backdrop-blur-sm border border-slate-100 hover:border-cyan-200 transition-colors"
                                     >
-                                        <div className={`w-14 h-14 rounded-2xl ${item.color} flex items-center justify-center text-slate-900 shadow-sm`}>
-                                            <item.icon size={24} strokeWidth={2.5} />
+                                        <div className="flex items-center gap-4">
+                                            <div className={`w-12 h-12 rounded-2xl ${item.color} flex items-center justify-center text-slate-900 shadow-sm shrink-0`}>
+                                                <item.icon size={20} strokeWidth={2.5} />
+                                            </div>
+                                            <div className="text-slate-900 font-black text-sm tracking-tight uppercase leading-tight">{item.label}</div>
                                         </div>
-                                        <div className="text-slate-900 font-black text-sm tracking-tight uppercase">{item.label}</div>
+                                        <p className="text-slate-500 text-sm font-medium leading-relaxed">{item.desc}</p>
                                     </motion.div>
                                 ))}
                             </div>
 
                             <button
                                 onClick={() => setShowPediatricModal(true)}
-                                className="flex items-center gap-4 bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"
+                                className="flex items-center justify-center w-full md:w-auto gap-4 bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 active:scale-95"
                             >
                                 View Pediatric Programs <ArrowRight size={20} />
                             </button>
@@ -360,7 +382,7 @@ const Services = () => {
             </section>
 
             {/* BREED SUPPORT - PROFESSIONAL GALLERY (SLIDER) */}
-            <section className="py-40 bg-slate-50 border-y border-slate-100 overflow-hidden">
+            <section className="py-20 md:py-40 bg-slate-50 border-y border-slate-100 overflow-hidden">
                 <div className="max-w-7xl mx-auto px-6 mb-24 flex flex-col md:flex-row justify-between items-end gap-10">
                     <div>
                         <span className="text-cyan-600 font-black text-xs uppercase tracking-[0.4em] mb-4 block">Comprehensive Support</span>
@@ -454,9 +476,11 @@ const Services = () => {
                             <p className="text-base md:text-xl text-slate-400 mb-10 md:mb-16 max-w-2xl mx-auto leading-relaxed">
                                 Join our network for advanced clinical management and industry-standard canine healthcare solutions.
                             </p>
-                            <Link to="/contact" className="inline-flex items-center gap-4 md:gap-6 bg-cyan-500 text-white px-10 py-5 md:px-20 md:py-8 rounded-full font-bold text-xl md:text-3xl hover:bg-cyan-400 transition-all shadow-2xl shadow-cyan-900/40 group active:scale-95">
-                                Connect Now <ArrowRight size={window.innerWidth < 768 ? 24 : 44} className="group-hover:translate-x-4 transition-transform" />
-                            </Link>
+                            <div className="flex justify-center">
+                                <Link to="/contact" className="inline-flex items-center gap-4 md:gap-6 bg-cyan-500 text-white px-10 py-5 md:px-20 md:py-8 rounded-full font-bold text-xl md:text-3xl hover:bg-cyan-400 transition-all shadow-2xl shadow-cyan-900/40 group active:scale-95">
+                                    Connect Now <ArrowRight size={window.innerWidth < 768 ? 24 : 44} className="group-hover:translate-x-4 transition-transform" />
+                                </Link>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
@@ -476,7 +500,7 @@ const Services = () => {
                             initial={{ scale: 0.9, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            className="bg-white rounded-[3rem] p-12 max-w-2xl w-full shadow-3xl border border-white/20 relative overflow-hidden"
+                            className="bg-white rounded-[3rem] p-6 md:p-12 max-w-2xl w-full shadow-3xl border border-white/20 relative max-h-[90vh] overflow-y-auto"
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="absolute top-0 right-0 p-8">
@@ -533,10 +557,21 @@ const Services = () => {
                             initial={{ scale: 0.9, opacity: 0, x: 50 }}
                             animate={{ scale: 1, opacity: 1, x: 0 }}
                             exit={{ scale: 0.9, opacity: 0, x: 50 }}
-                            className="bg-white rounded-[4rem] max-w-4xl w-full shadow-3xl border border-white/20 relative overflow-hidden flex flex-col md:flex-row"
+                            className="bg-white rounded-[4rem] max-w-4xl w-full shadow-3xl border border-white/20 relative overflow-hidden flex flex-col md:flex-row max-h-[90vh]"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="w-full md:w-1/2 relative h-64 md:h-auto">
+                            {/* Fixed Close Button */}
+                            <div className="absolute top-4 right-4 md:top-8 md:right-8 z-[60]">
+                                <button
+                                    onClick={() => setSelectedDiscipline(null)}
+                                    className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-200 transition-all shadow-md"
+                                >
+                                    <Plus className="rotate-45" size={24} />
+                                </button>
+                            </div>
+
+                            {/* Image Side (Fixed) */}
+                            <div className="w-full md:w-1/2 relative h-64 md:h-auto shrink-0">
                                 <img src={selectedDiscipline.image} alt={selectedDiscipline.title} className="w-full h-full object-cover" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/20 to-transparent"></div>
                                 <div className="absolute bottom-12 left-12 text-white z-10">
@@ -551,15 +586,9 @@ const Services = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full md:w-1/2 p-12 md:p-16">
-                                <div className="absolute top-0 right-0 p-8">
-                                    <button
-                                        onClick={() => setSelectedDiscipline(null)}
-                                        className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-100 transition-all"
-                                    >
-                                        <Plus className="rotate-45" size={24} />
-                                    </button>
-                                </div>
+                            
+                            {/* Text Side (Scrollable) */}
+                            <div className="w-full md:w-1/2 p-12 md:p-16 overflow-y-auto">
                                 <h3 className="text-cyan-600 font-black text-xs uppercase tracking-[0.4em] mb-6">Expert Methodology</h3>
                                 <p className="text-slate-500 text-lg leading-relaxed mb-10">
                                     {selectedDiscipline.desc} Our approach focuses on long-term health optimization using validated clinical data and expert systems.
@@ -598,15 +627,15 @@ const Services = () => {
                             initial={{ scale: 0.9, opacity: 0, y: 100 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 100 }}
-                            className="bg-white rounded-[3rem] p-12 md:p-20 max-w-5xl w-full shadow-3xl border border-white/20 relative overflow-hidden"
+                            className="bg-white rounded-[3rem] p-6 md:p-20 max-w-5xl w-full shadow-3xl border border-white/20 relative max-h-[90vh] overflow-y-auto"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="absolute top-0 right-0 p-12">
+                            <div className="absolute top-4 right-4 md:top-12 md:right-12 z-20">
                                 <button
                                     onClick={() => setShowPediatricModal(false)}
-                                    className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-100 transition-all"
+                                    className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-100 transition-all shadow-md"
                                 >
-                                    <Plus className="rotate-45" size={32} />
+                                    <Plus className="rotate-45" size={window.innerWidth < 768 ? 24 : 32} />
                                 </button>
                             </div>
                             <div className="flex flex-col md:flex-row gap-20">
@@ -634,10 +663,19 @@ const Services = () => {
                                         ))}
                                     </div>
                                 </div>
-                                <div className="w-full md:w-1/3">
-                                    <div className="aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl relative">
-                                        <img src="/image/dog4.jpg" alt="Pediatric Care" className="w-full h-full object-cover" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-cyan-600/40 to-transparent"></div>
+                                <div className="w-full md:w-80 shrink-0 order-first md:order-last">
+                                    <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl mb-6 md:mb-10 group">
+                                        <img src="/image/dog_training_premium.png" alt="Training" className="w-full h-[250px] md:h-[450px] object-cover group-hover:scale-110 transition-transform duration-700" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+                                        {/* Image Scroll Hint for Mobile */}
+                                        <motion.div
+                                            animate={{ y: [0, 10, 0] }}
+                                            transition={{ repeat: Infinity, duration: 2 }}
+                                            className="absolute bottom-4 left-1/2 -translate-x-1/2 md:hidden"
+                                        >
+                                            <ChevronDown size={24} className="text-white drop-shadow-lg" />
+                                        </motion.div>
                                     </div>
                                     <button
                                         onClick={() => {
