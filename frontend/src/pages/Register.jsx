@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, UserPlus, HeartPulse, CheckCircle } from 'lucide-react';
 
-import API_URL from 'https://dog-healthcare-backend.onrender.com';
+import API_URL from '../config.js';
 
 const Register = () => {
     const [formData, setFormData] = useState({ username: '', email: '', password: '', confirmPassword: '', role: 'user' });
