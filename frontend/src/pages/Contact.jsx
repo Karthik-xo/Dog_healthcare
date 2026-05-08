@@ -3,7 +3,8 @@ import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-rea
 import { useState } from 'react';
 
 
-import API_URL from '../config.js';
+
+import API_URL from '@/config.js';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
