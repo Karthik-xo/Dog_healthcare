@@ -2,7 +2,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, HeartPulse, UserCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-const BASE_URL = 'https://dog-healthcare-backend.onrender.com';
+import API_URL, { BASE_URL } from '../../config';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +66,7 @@ const Navbar = () => {
                                 <Link to="/dashboard/profile" title="View your medical profile" className="flex items-center gap-2 text-slate-700 font-medium hover:text-green-600 transition-colors group">
                                     <div className="w-8 h-8 rounded-full overflow-hidden bg-green-100 flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
                                         {user.profilePic ? (
-                                            <img key={user.profilePic} src={`${user.profilePic}?t=${Date.now()}`} alt="Profile" className="w-full h-full object-cover" />
+                                            <img key={user.profilePic} src={`${BASE_URL}${user.profilePic}?t=${Date.now()}`} alt="Profile" className="w-full h-full object-cover" />
                                         ) : (
                                             <UserCircle size={20} />
                                         )}
