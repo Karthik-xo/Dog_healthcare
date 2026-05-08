@@ -7,7 +7,7 @@ import {
     Video, RefreshCw, Check, Activity
 } from 'lucide-react';
 
-import API_URL, { BASE_URL } from '../../config.js';
+import API_URL, { BASE_URL } from '@/config.js';
 const Profile = () => {
     const [user, setUser] = useState({
         username: '',
