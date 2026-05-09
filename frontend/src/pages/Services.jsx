@@ -500,44 +500,47 @@ const Services = () => {
                             initial={{ scale: 0.9, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            className="bg-white rounded-[3rem] p-6 md:p-12 max-w-2xl w-full shadow-3xl border border-white/20 relative max-h-[90vh] overflow-y-auto"
+                            className="bg-white rounded-[3rem] max-w-2xl w-full shadow-3xl border border-white/20 relative max-h-[90vh] overflow-hidden flex flex-col"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="absolute top-0 right-0 p-8">
+                            <div className="absolute top-4 right-4 md:top-8 md:right-8 z-20">
                                 <button
                                     onClick={() => setShowProtocolModal(false)}
-                                    className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-100 transition-all"
+                                    className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-100 transition-all shadow-md"
                                 >
                                     <Plus className="rotate-45" size={24} />
                                 </button>
                             </div>
-                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 font-bold text-sm mb-8 uppercase tracking-widest">
-                                <ShieldCheck size={18} /> Protocol Breakdown
-                            </div>
-                            <h2 className="text-4xl font-extrabold text-slate-900 mb-8 tracking-tight">Enterprise Care Protocol.</h2>
-                            <div className="space-y-8">
-                                {[
-                                    { title: 'Screening Phase', desc: 'Initial multi-spectral scanning and genetic baseline establishment.' },
-                                    { title: 'Synthesis Phase', desc: 'AI-driven data cross-referencing with global clinical standards.' },
-                                    { title: 'Deployment Phase', desc: 'Personalized treatment deployment with real-time biometric tracking.' }
-                                ].map((step, i) => (
-                                    <div key={i} className="flex gap-6">
-                                        <div className="w-12 h-12 rounded-2xl bg-cyan-500 text-white flex items-center justify-center font-black shrink-0">
-                                            {i + 1}
+                            
+                            <div className="p-6 md:p-12 overflow-y-auto w-full h-full">
+                                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 font-bold text-sm mb-8 uppercase tracking-widest mt-8 md:mt-0">
+                                    <ShieldCheck size={18} /> Protocol Breakdown
+                                </div>
+                                <h2 className="text-4xl font-extrabold text-slate-900 mb-8 tracking-tight">Enterprise Care Protocol.</h2>
+                                <div className="space-y-8">
+                                    {[
+                                        { title: 'Screening Phase', desc: 'Initial multi-spectral scanning and genetic baseline establishment.' },
+                                        { title: 'Synthesis Phase', desc: 'AI-driven data cross-referencing with global clinical standards.' },
+                                        { title: 'Deployment Phase', desc: 'Personalized treatment deployment with real-time biometric tracking.' }
+                                    ].map((step, i) => (
+                                        <div key={i} className="flex gap-6">
+                                            <div className="w-12 h-12 rounded-2xl bg-cyan-500 text-white flex items-center justify-center font-black shrink-0">
+                                                {i + 1}
+                                            </div>
+                                            <div>
+                                                <h3 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h3>
+                                                <p className="text-slate-500 leading-relaxed">{step.desc}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h3>
-                                            <p className="text-slate-500 leading-relaxed">{step.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+                                <button
+                                    onClick={() => setShowProtocolModal(false)}
+                                    className="w-full mt-12 bg-slate-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all"
+                                >
+                                    Acknowledge Protocol
+                                </button>
                             </div>
-                            <button
-                                onClick={() => setShowProtocolModal(false)}
-                                className="w-full mt-12 bg-slate-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all"
-                            >
-                                Acknowledge Protocol
-                            </button>
                         </motion.div>
                     </motion.div>
                 )}
@@ -571,17 +574,17 @@ const Services = () => {
                             </div>
 
                             {/* Image Side (Fixed) */}
-                            <div className="w-full md:w-1/2 relative h-64 md:h-auto shrink-0">
-                                <img src={selectedDiscipline.image} alt={selectedDiscipline.title} className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/20 to-transparent"></div>
-                                <div className="absolute bottom-12 left-12 text-white z-10">
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <div className="w-14 h-14 rounded-2xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                                            <selectedDiscipline.icon size={28} />
+                            <div className="w-full md:w-1/2 relative min-h-[350px] md:min-h-0 md:h-auto shrink-0 flex flex-col justify-end">
+                                <img src={selectedDiscipline.image} alt={selectedDiscipline.title} className="absolute inset-0 w-full h-full object-cover" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent md:via-slate-900/20"></div>
+                                <div className="relative p-6 md:p-12 text-white z-10 w-full">
+                                    <div className="flex items-center gap-3 md:gap-4">
+                                        <div className="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-2xl bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                                            <selectedDiscipline.icon className="w-6 h-6 md:w-7 md:h-7" />
                                         </div>
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-60 mb-1 leading-none">{selectedDiscipline.subtitle}</div>
-                                            <h2 className="text-5xl font-black tracking-tighter leading-none italic uppercase">{selectedDiscipline.title}</h2>
+                                            <div className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] opacity-80 mb-1 leading-none">{selectedDiscipline.subtitle}</div>
+                                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter leading-tight italic uppercase">{selectedDiscipline.title}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -627,10 +630,10 @@ const Services = () => {
                             initial={{ scale: 0.9, opacity: 0, y: 100 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 100 }}
-                            className="bg-white rounded-[3rem] p-6 md:p-20 max-w-5xl w-full shadow-3xl border border-white/20 relative max-h-[90vh] overflow-y-auto"
+                            className="bg-white rounded-[3rem] max-w-5xl w-full shadow-3xl border border-white/20 relative max-h-[90vh] overflow-hidden flex flex-col"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="absolute top-4 right-4 md:top-12 md:right-12 z-20">
+                            <div className="absolute top-4 right-4 md:top-8 md:right-8 z-20">
                                 <button
                                     onClick={() => setShowPediatricModal(false)}
                                     className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-100 transition-all shadow-md"
@@ -638,54 +641,57 @@ const Services = () => {
                                     <Plus className="rotate-45" size={window.innerWidth < 768 ? 24 : 32} />
                                 </button>
                             </div>
-                            <div className="flex flex-col md:flex-row gap-20">
-                                <div className="flex-1">
-                                    <span className="text-cyan-600 font-black text-xs uppercase tracking-[0.4em] mb-6 block">Curated Excellence</span>
-                                    <h2 className="text-5xl font-extrabold text-slate-900 mb-8 tracking-tight italic">Pediatric Success Programs.</h2>
-                                    <p className="text-xl text-slate-500 leading-relaxed mb-12">
-                                        Our specialized programs for puppies are designed to maximize genetic potential and ensure robust early development through precision monitoring.
-                                    </p>
-                                    <div className="space-y-6">
-                                        {[
-                                            { title: 'Neonatal Optimization', time: '0-8 Weeks', status: 'Priority' },
-                                            { title: 'Social Integration Alpha', time: '8-16 Weeks', status: 'Active' },
-                                            { title: 'Nutritional Foundation', time: '0-12 Months', status: 'Elite' }
-                                        ].map((prog, i) => (
-                                            <div key={i} className="flex items-center justify-between p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-cyan-200 transition-all group">
-                                                <div>
-                                                    <h3 className="font-bold text-slate-900 text-lg mb-1">{prog.title}</h3>
-                                                    <span className="text-slate-400 text-xs font-black uppercase tracking-widest">{prog.time}</span>
+                            
+                            <div className="p-6 md:p-20 overflow-y-auto w-full h-full">
+                                <div className="flex flex-col md:flex-row gap-20">
+                                    <div className="flex-1">
+                                        <span className="text-cyan-600 font-black text-xs uppercase tracking-[0.4em] mb-6 block">Curated Excellence</span>
+                                        <h2 className="text-5xl font-extrabold text-slate-900 mb-8 tracking-tight italic">Pediatric Success Programs.</h2>
+                                        <p className="text-xl text-slate-500 leading-relaxed mb-12">
+                                            Our specialized programs for puppies are designed to maximize genetic potential and ensure robust early development through precision monitoring.
+                                        </p>
+                                        <div className="space-y-6">
+                                            {[
+                                                { title: 'Neonatal Optimization', time: '0-8 Weeks', status: 'Priority' },
+                                                { title: 'Social Integration Alpha', time: '8-16 Weeks', status: 'Active' },
+                                                { title: 'Nutritional Foundation', time: '0-12 Months', status: 'Elite' }
+                                            ].map((prog, i) => (
+                                                <div key={i} className="flex items-center justify-between p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-cyan-200 transition-all group">
+                                                    <div>
+                                                        <h3 className="font-bold text-slate-900 text-lg mb-1">{prog.title}</h3>
+                                                        <span className="text-slate-400 text-xs font-black uppercase tracking-widest">{prog.time}</span>
+                                                    </div>
+                                                    <div className="bg-white px-4 py-1.5 rounded-full border border-slate-200 text-[10px] font-black uppercase tracking-widest text-cyan-600 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                                                        {prog.status}
+                                                    </div>
                                                 </div>
-                                                <div className="bg-white px-4 py-1.5 rounded-full border border-slate-200 text-[10px] font-black uppercase tracking-widest text-cyan-600 group-hover:bg-cyan-500 group-hover:text-white transition-all">
-                                                    {prog.status}
-                                                </div>
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="w-full md:w-80 shrink-0 order-first md:order-last">
-                                    <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl mb-6 md:mb-10 group">
-                                        <img src="/image/dog_training_premium.png" alt="Training" className="w-full h-[250px] md:h-[450px] object-cover group-hover:scale-110 transition-transform duration-700" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                                    <div className="w-full md:w-80 shrink-0 order-first md:order-last">
+                                        <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl mb-6 md:mb-10 group mt-12 md:mt-0">
+                                            <img src="/image/dog_training_premium.png" alt="Training" className="w-full h-[250px] md:h-[450px] object-cover group-hover:scale-110 transition-transform duration-700" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
 
-                                        {/* Image Scroll Hint for Mobile */}
-                                        <motion.div
-                                            animate={{ y: [0, 10, 0] }}
-                                            transition={{ repeat: Infinity, duration: 2 }}
-                                            className="absolute bottom-4 left-1/2 -translate-x-1/2 md:hidden"
+                                            {/* Image Scroll Hint for Mobile */}
+                                            <motion.div
+                                                animate={{ y: [0, 10, 0] }}
+                                                transition={{ repeat: Infinity, duration: 2 }}
+                                                className="absolute bottom-4 left-1/2 -translate-x-1/2 md:hidden"
+                                            >
+                                                <ChevronDown size={24} className="text-white drop-shadow-lg" />
+                                            </motion.div>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                setShowPediatricModal(false);
+                                                navigate('/contact?subject=Pediatric Enrollment');
+                                            }}
+                                            className="w-full mt-10 bg-slate-900 text-white py-6 rounded-2xl font-bold text-xl hover:bg-slate-800 transition-all shadow-xl"
                                         >
-                                            <ChevronDown size={24} className="text-white drop-shadow-lg" />
-                                        </motion.div>
+                                            Enroll Now
+                                        </button>
                                     </div>
-                                    <button
-                                        onClick={() => {
-                                            setShowPediatricModal(false);
-                                            navigate('/contact?subject=Pediatric Enrollment');
-                                        }}
-                                        className="w-full mt-10 bg-slate-900 text-white py-6 rounded-2xl font-bold text-xl hover:bg-slate-800 transition-all shadow-xl"
-                                    >
-                                        Enroll Now
-                                    </button>
                                 </div>
                             </div>
                         </motion.div>
